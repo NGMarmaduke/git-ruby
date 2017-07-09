@@ -1,3 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'rspec'
+gem 'activesupport', require: false
+
+gem 'rspec', require: false
+gem 'guard-rspec', require: false

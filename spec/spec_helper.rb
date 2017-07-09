@@ -8,7 +8,7 @@ require 'securerandom'
 
 RSpec.configure do |config|
   config.around(:each, :within_tmp_dir) do |example|
-    dir_name = File.join('tmp', SecureRandom.hex)
+    dir_name = File.join('/', 'tmp', SecureRandom.hex)
     FileUtils.mkdir_p(dir_name)
 
     Dir.chdir(dir_name) do 

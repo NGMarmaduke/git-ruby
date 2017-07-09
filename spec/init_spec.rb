@@ -1,11 +1,11 @@
 require 'spec_helper'
 
 RSpec.describe GitRuby::Init, :within_tmp_dir do
-  describe '#intialize' do
-    it 'defaults to the present working directory' do
+  describe '#perform' do
+    it 'creates an empty git repo' do
       described_class.perform()
 
-      expect('hello').to be_a_file.with_contents('')
+      expect(system('git status')).to be true
     end
   end
 end
