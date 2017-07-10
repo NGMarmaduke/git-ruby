@@ -3,19 +3,15 @@ $LOAD_PATH.unshift File.expand_path('../../lib', __FILE__)
 require 'git_ruby'
 require 'rspec'
 
-require 'fileutils'
-require 'securerandom'
+require 'tmpdir'
 
 RSpec.configure do |config|
   config.around(:each, :within_tmp_dir) do |example|
-    dir_name = File.join('/', 'tmp', SecureRandom.hex)
-    FileUtils.mkdir_p(dir_name)
-
-    Dir.chdir(dir_name) do 
-      example.run
+    Dir.mktmpdir do |dir|
+      Dir.chdir(dir) do
+        example.run
+      end
     end
-
-    FileUtils.rm_rf(dir_name)
   end
 end
 
